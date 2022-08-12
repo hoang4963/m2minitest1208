@@ -75,6 +75,16 @@ public abstract class Employee implements Comparable<Employee> {
         }
         return str;
     }
+    public static long sumOfSalaryOfEmployeePartTime(Employee[] employees){
+        long sumOfEmployeeParttime =0;
+        for (int i = 0; i < employees.length; i++){
+            if (employees[i] instanceof EmployeeParttime){
+                EmployeeParttime employeeParttime = (EmployeeParttime) employees[i];
+                sumOfEmployeeParttime+= employeeParttime.getSalary();
+            }
+        }
+        return sumOfEmployeeParttime;
+    }
 
     @Override
     public int compareTo(Employee o) {

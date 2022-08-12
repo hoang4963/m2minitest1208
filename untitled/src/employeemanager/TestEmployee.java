@@ -1,5 +1,5 @@
 package employeemanager;
-import java.util.Arrays;
+// import java.util.Arrays;
 
 public class TestEmployee {
     public static void main(String[] args) {
@@ -20,9 +20,11 @@ public class TestEmployee {
 //        Ham hien thi so nguoi cua muc luong thap hon luong trung binh cua emoloyee
 //        System.out.println(Employee.showEmployeeHasSalaryLessThanAvgSalary(employees,avgSalary));
 //        sap xet muc luong tang dan
-        Arrays.sort(employees);
-        for (int i = 0; i < employees.length; i++) {
-            System.out.println("luong xep thu " +  (10 - i) +" la: " + employees[i].getFullName() +" " + employees[i].getSalary());
-        }
+//        Arrays.sort(employees);
+//        for (int i = 0; i < employees.length; i++) {
+//            System.out.println("luong xep thu " +  (10 - i) +" la: " + employees[i].getFullName() +" " + employees[i].getSalary());
+//        }
+//        tong luong tra cho nhan vien parttime
+        System.out.println("Luong phai tra cho nhan vien Parttime la: " + Employee.sumOfSalaryOfEmployeePartTime(employees));
     }
 }
