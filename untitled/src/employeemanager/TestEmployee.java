@@ -1,6 +1,4 @@
-import employeemanager.Employee;
-import employeemanager.EmployeeFulltime;
-import employeemanager.EmployeeParttime;
+package employeemanager;
 import java.util.Arrays;
 
 public class TestEmployee {
@@ -24,7 +22,7 @@ public class TestEmployee {
 //        sap xet muc luong tang dan
         Arrays.sort(employees);
         for (int i = 0; i < employees.length; i++) {
-            System.out.println("luong xep thu " +  (10 - i) +" la: " + employees[i].getFullName());
+            System.out.println("luong xep thu " +  (10 - i) +" la: " + employees[i].getFullName() +" " + employees[i].getSalary());
         }
     }
 }

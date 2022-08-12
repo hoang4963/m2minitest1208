@@ -67,10 +67,10 @@ public abstract class Employee implements Comparable<Employee> {
         return sum/ employees.length;
     }
     public static String showEmployeeHasSalaryLessThanAvgSalary(Employee[] employees, double avgSalary){
-        String str ="Cac nhan vien co tien luong thap huong luong trung binh la: ";
+        String str ="Cac nhan vien co tien luong thap huong luong trung binh la";
         for (int i = 0; i < employees.length; i++) {
             if (employees[i].getSalary() < avgSalary){
-                str += (employees[i].getFullName() +", ");
+                str += (employees[i].getFullName());
             }
         }
         return str;
