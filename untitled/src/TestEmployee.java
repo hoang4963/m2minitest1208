@@ -20,7 +20,7 @@ public class TestEmployee {
 //        double avgSalary = Employee.getAverageSalary(employees);
 //        System.out.println("Trung binh luong tat ca nhan vien la: "+ avgSalary );
 //        Ham hien thi so nguoi cua muc luong thap hon luong trung binh cua emoloyee
-//        Employee.showEmployeeHasSalaryLessThanAvgSalary(employees,avgSalary);
+//        System.out.println(Employee.showEmployeeHasSalaryLessThanAvgSalary(employees,avgSalary));
 //        sap xet muc luong tang dan
         Arrays.sort(employees);
         for (int i = 0; i < employees.length; i++) {

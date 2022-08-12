@@ -66,12 +66,14 @@ public abstract class Employee implements Comparable<Employee> {
         }
         return sum/ employees.length;
     }
-    public static void showEmployeeHasSalaryLessThanAvgSalary(Employee[] employees, double avgSalary){
+    public static String showEmployeeHasSalaryLessThanAvgSalary(Employee[] employees, double avgSalary){
+        String str ="Cac nhan vien co tien luong thap huong luong trung binh la: ";
         for (int i = 0; i < employees.length; i++) {
             if (employees[i].getSalary() < avgSalary){
-                System.out.println(employees[i].getFullName() + " co luong thap hon luong trung binh cua nhan vien");
+                str += (employees[i].getFullName() +", ");
             }
         }
+        return str;
     }
 
     @Override
