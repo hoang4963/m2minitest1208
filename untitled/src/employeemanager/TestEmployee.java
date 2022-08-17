@@ -1,5 +1,5 @@
 package employeemanager;
-// import java.util.Arrays;
+ import java.util.Arrays;
 
 public class TestEmployee {
     public static void main(String[] args) {
@@ -15,15 +15,15 @@ public class TestEmployee {
         Employee Phong =  new EmployeeParttime("10CGM522I1","Nguyen Duy Phong",24,"0934842576","phamhongquan93@gmail.com",35);
         Employee[] employees = {Hoang,Duc,Hiep,Chuc,Trang,Quan,Trung,Vinh,Tuan,Phong};
 //        luong trung binh cua employee
-//        double avgSalary = Employee.getAverageSalary(employees);
-//        System.out.println("Trung binh luong tat ca nhan vien la: "+ avgSalary );
+        double avgSalary = Employee.getAverageSalary(employees);
+        System.out.println("Trung binh luong tat ca nhan vien la: "+ avgSalary );
 //        Ham hien thi so nguoi cua muc luong thap hon luong trung binh cua emoloyee
-//        System.out.println(Employee.showEmployeeHasSalaryLessThanAvgSalary(employees,avgSalary));
+        System.out.println(Employee.showEmployeeHasSalaryLessThanAvgSalary(employees,avgSalary));
 //        sap xet muc luong tang dan
-//        Arrays.sort(employees);
-//        for (int i = 0; i < employees.length; i++) {
-//            System.out.println("luong xep thu " +  (10 - i) +" la: " + employees[i].getFullName() +" " + employees[i].getSalary());
-//        }
+        Arrays.sort(employees);
+        for (int i = 0; i < employees.length; i++) {
+            System.out.println("luong xep thu " +  (10 - i) +" la: " + employees[i].getFullName() +" " + employees[i].getSalary());
+        }
 //        tong luong tra cho nhan vien parttime
         System.out.println("Luong phai tra cho nhan vien Parttime la: " + Employee.sumOfSalaryOfEmployeePartTime(employees));
     }
