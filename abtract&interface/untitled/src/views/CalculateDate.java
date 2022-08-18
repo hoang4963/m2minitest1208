@@ -1,4 +1,4 @@
-package date;
+package views;
 
 public class CalculateDate {
     public static boolean checkPrimeYear(int year){

@@ -1,8 +1,8 @@
-package material;
+package model;
 
 import java.time.LocalDate;
 
-import date.CalculateDate;
+import views.CalculateDate;
 
 public class CrispyFlour extends Material implements Discount {
     private static final double LAST_REAL_PERCENT = 0.6;

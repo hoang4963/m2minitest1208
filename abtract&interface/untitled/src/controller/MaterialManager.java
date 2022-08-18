@@ -1,7 +1,7 @@
-package manager;
+package controller;
 
-import material.CrispyFlour;
-import material.Meat;
+import model.CrispyFlour;
+import model.Meat;
 
 import java.util.Arrays;
 
