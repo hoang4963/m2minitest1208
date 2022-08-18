@@ -88,7 +88,7 @@ public class MaterialManager<E> {
                 CrispyFlour crispyFlour = (CrispyFlour) material.get(i);
                 sum += crispyFlour.getAmount();
             }
-            else {
+            else if (material.get(i) instanceof Meat){
                 Meat meat = (Meat) material.get(i);
                 sum+= meat.getAmount();
             }
@@ -102,7 +102,7 @@ public class MaterialManager<E> {
                 CrispyFlour crispyFlour = (CrispyFlour) material.get(i);
                 sumReal+= crispyFlour.getRealMoney();
             }
-            else {
+            else if (material.get(i) instanceof Meat){
                 Meat meat = (Meat) material.get(i);
                 sumReal+= meat.getRealMoney();
             }
