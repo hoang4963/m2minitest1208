@@ -4,7 +4,6 @@ import manager.MaterialManager;
 import material.CrispyFlour;
 import material.Material;
 import material.Meat;
-
 import java.time.LocalDate;
 
 public class test {
@@ -31,37 +30,7 @@ public class test {
         materialManager.add(thiCa);
         materialManager.add(thiBo);
         System.out.println("Chenh lech tien thuc te trong ngay la: ");
-        System.out.println(moneyDayDifference(materialManager));
+        System.out.println(MaterialManager.moneyDayDifference(materialManager));
     }
-    static double moneyDayDifference(MaterialManager material){
-        return getSum(material) - getSumReal(material);
-    }
-    static double getSum(MaterialManager material){
-        double sum =0.0;
-        for (int i = 0; i < material.size(); i++) {
-            if (material.get(i) instanceof CrispyFlour){
-                CrispyFlour crispyFlour = (CrispyFlour) material.get(i);
-                sum += crispyFlour.getAmount();
-            }
-            else {
-                Meat meat = (Meat) material.get(i);
-                sum+= meat.getAmount();
-            }
-        }
-        return sum;
-    }
-    static double getSumReal(MaterialManager material){
-        double sumReal = 0.0;
-        for (int i = 0; i < material.size(); i++) {
-            if (material.get(i) instanceof CrispyFlour){
-                CrispyFlour crispyFlour = (CrispyFlour) material.get(i);
-                sumReal+= crispyFlour.getRealMoney();
-            }
-            else {
-                Meat meat = (Meat) material.get(i);
-                sumReal+= meat.getRealMoney();
-            }
-        }
-        return sumReal;
-    }
+
 }

@@ -1,5 +1,8 @@
 package manager;
 
+import material.CrispyFlour;
+import material.Meat;
+
 import java.util.Arrays;
 
 public class MaterialManager<E> {
@@ -74,5 +77,36 @@ public class MaterialManager<E> {
     }
     public void set(int index,E e){
         materials[index] = e;
+    }
+    public static double moneyDayDifference(MaterialManager material){
+        return getSum(material) - getSumReal(material);
+    }
+    static double getSum(MaterialManager material){
+        double sum =0.0;
+        for (int i = 0; i < material.size(); i++) {
+            if (material.get(i) instanceof CrispyFlour){
+                CrispyFlour crispyFlour = (CrispyFlour) material.get(i);
+                sum += crispyFlour.getAmount();
+            }
+            else {
+                Meat meat = (Meat) material.get(i);
+                sum+= meat.getAmount();
+            }
+        }
+        return sum;
+    }
+    static double getSumReal(MaterialManager material){
+        double sumReal = 0.0;
+        for (int i = 0; i < material.size(); i++) {
+            if (material.get(i) instanceof CrispyFlour){
+                CrispyFlour crispyFlour = (CrispyFlour) material.get(i);
+                sumReal+= crispyFlour.getRealMoney();
+            }
+            else {
+                Meat meat = (Meat) material.get(i);
+                sumReal+= meat.getRealMoney();
+            }
+        }
+        return sumReal;
     }
 }

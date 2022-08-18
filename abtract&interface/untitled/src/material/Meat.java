@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import date.CalculateDate;
 
 public class Meat extends Material implements Discount{
+    private static final double LAST_REAL_PERCENT = 0.7;
+    private static final double REAL_PERCENT = 0.9;
+    private static final int EXPIRYDAY_OF_MEAT = 7;
     double weight;
     public Meat(){
 
@@ -28,7 +31,7 @@ public class Meat extends Material implements Discount{
     }
     @Override
     LocalDate getExpiryDate(){
-        return manufacturingDate.plusDays(7);
+        return manufacturingDate.plusDays(EXPIRYDAY_OF_MEAT);
     }
     @Override
     public double getAmount(){
@@ -38,8 +41,8 @@ public class Meat extends Material implements Discount{
     @Override
     public double getRealMoney() {
         if (getRealValue())
-            return 0.7*getAmount();
-        else return 0.9*getAmount();
+            return LAST_REAL_PERCENT *getAmount();
+        else return REAL_PERCENT *getAmount();
     }
     public boolean getRealValue(){
         LocalDate now = LocalDate.now();

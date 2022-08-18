@@ -5,8 +5,11 @@ import java.time.LocalDate;
 import date.CalculateDate;
 
 public class CrispyFlour extends Material implements Discount {
+    private static final double LAST_REAL_PERCENT = 0.6;
+    private static final double REAL_PERCENT = 0.95;
+    private static final int EXPIRYYEARS_OF_CRISPYFLOUR = 1;
     int quantity;
-    CrispyFlour(String id, String bot_mi, int i, int cost, int quantity){
+    CrispyFlour(){
 
     }
     public CrispyFlour(int quantity) {
@@ -31,14 +34,14 @@ public class CrispyFlour extends Material implements Discount {
     }
     @Override
     LocalDate getExpiryDate() {
-        return manufacturingDate.plusYears(1);
+        return manufacturingDate.plusYears(EXPIRYYEARS_OF_CRISPYFLOUR);
     }
 
     @Override
     public double getRealMoney() {
         if (getRealValue())
-            return 0.6*getAmount();
-        else return 0.95*getAmount();
+            return LAST_REAL_PERCENT *getAmount();
+        else return REAL_PERCENT *getAmount();
     }
     public boolean getRealValue(){
         LocalDate now = LocalDate.now();
