@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class Client {
      private static HotelManager listRoom = new HotelManager();
     public static void main(String[] args) {
-        WriteAndReadData.writeToDataHotel(listRoom);
         listRoom = WriteAndReadData.readDataHotel();
         Start();
     }
@@ -58,7 +57,6 @@ public class Client {
     }
 
     private static void showAllRoom() {
-        listRoom = WriteAndReadData.readDataHotel();
         if (listRoom.size() != 0) {
             for (int i = 0; i < listRoom.size(); i++) {
                 System.out.println(listRoom.getRoomOfHotel(i));
@@ -117,10 +115,11 @@ public class Client {
     }
 
     private static void createRoom(int chose){
-        switch (chose){
-        case 1 -> createRoomHasNguoi();
-        case 2 -> createRoomNull();
-        case 3 -> Start();
+        switch (chose) {
+            case 1 -> createRoomHasNguoi();
+            case 2 -> createRoomNull();
+            case 3 -> Start();
+            case -1 -> System.out.println("Back");
             default -> System.out.println("nhap lai");
         }
     }
