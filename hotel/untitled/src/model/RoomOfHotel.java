@@ -8,12 +8,14 @@ public class RoomOfHotel implements Serializable {
     private double cost;
     private Nguoi nguoi;
     private LocalDate dayJoin;
+    private boolean isNull;
 
     public RoomOfHotel(String typeOfRoom, double cost, Nguoi nguoi, LocalDate dayJoin) {
         this.typeOfRoom = typeOfRoom;
         this.cost = cost;
         this.nguoi = nguoi;
         this.dayJoin = dayJoin;
+        this.isNull = false;
     }
 
     public RoomOfHotel(String typeOfRoom, double cost) {
@@ -21,6 +23,18 @@ public class RoomOfHotel implements Serializable {
         this.cost = cost;
         this.dayJoin = null;
         this.nguoi = null;
+        this.isNull = true;
+    }
+
+    public boolean isNull() {
+        return isNull;
+    }
+
+    private void setIsNull(){
+        if (this.nguoi != null){
+            isNull = false;
+        }
+        else isNull = true;
     }
 
     public String getTypeOfRoom() {

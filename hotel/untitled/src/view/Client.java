@@ -1,15 +1,23 @@
 package view;
 
 import controller.HotelManager;
+import controller.WriteAndReadData;
 import model.Nguoi;
 import model.RoomOfHotel;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Client {
      private static HotelManager listRoom = new HotelManager();
     public static void main(String[] args) {
+        WriteAndReadData.writeToDataHotel(listRoom);
+        listRoom = WriteAndReadData.readDataHotel();
+        Start();
+    }
+
+    private static void Start() {
         int input;
         do {
             System.out.println("Nhap -1 de thoat");
@@ -38,6 +46,7 @@ public class Client {
     }
 
     private static void findNguoi() {
+        listRoom = WriteAndReadData.readDataHotel();
         System.out.println("nhap so CMND");
         Scanner scanner = new Scanner(System.in);
         long cmnd = scanner.nextInt();
@@ -49,9 +58,13 @@ public class Client {
     }
 
     private static void showAllRoom() {
-        for (int i = 0; i < listRoom.size(); i++) {
-            System.out.println(listRoom.getRoomOfHotel(i));
+        listRoom = WriteAndReadData.readDataHotel();
+        if (listRoom.size() != 0) {
+            for (int i = 0; i < listRoom.size(); i++) {
+                System.out.println(listRoom.getRoomOfHotel(i));
+            }
         }
+        else System.out.println("Khong co thong tin!");
     }
     private static void addPhong() {
         int chose;
@@ -67,45 +80,76 @@ public class Client {
     }
 
     private static void nguoiCheckOut() {
-
+        System.out.println("Nhap cmnd nguoi check out");
+        Scanner scanner = new Scanner(System.in);
+        long cmnd = scanner.nextLong();
+        listRoom.nguoiCheckOut(cmnd);
+        WriteAndReadData.writeToDataHotel(listRoom);
     }
 
     private static void addNguoiCheckIn() {
-
-    }
-    private static void createRoom(int chose){
-        switch (chose){
-        case 1 -> createRoomNull();
-        case 2 -> createRoomHasNguoi();
+        System.out.println("Nhap loai phong ");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+        for (int i = 0; i < listRoom.size(); i++) {
+            if (Objects.equals(listRoom.getRoomOfHotel(i).getTypeOfRoom(), name) && listRoom.getRoomOfHotel(i).isNull()){
+                Nguoi nguoi = makeNguoi();
+                listRoom.getRoomOfHotel(i).setNguoi(nguoi);
+                LocalDate dayJoin = enterDayJoin();
+                listRoom.getRoomOfHotel(i).setDayJoin(dayJoin);
+                WriteAndReadData.writeToDataHotel(listRoom);
+            }
+            else System.out.println("Khong thue duoc phong nay hoac khong co phong nay");
         }
     }
-    private static void createRoomNull(){
-        System.out.println("Type of room: ");
-        Scanner scanner = new Scanner(System.in);
-        String typeOfRoom = scanner.nextLine();
-        System.out.println("Cost: ");
-        Scanner scanner1 = new Scanner(System.in);
-        double cost = scanner1.nextDouble();
-        RoomOfHotel room = new RoomOfHotel(typeOfRoom,cost);
-        listRoom.addRoom(room);
-    }
-    private static void createRoomHasNguoi(){
+
+    private static Nguoi makeNguoi() {
         System.out.println("Nhap ten nguoi:");
         Scanner scanner2 = new Scanner(System.in);
-        String name = scanner2.nextLine();
+        String nameNguoi = scanner2.nextLine();
         System.out.println("Nhap CMND:");
         Scanner scanner3 = new Scanner(System.in);
         long cmnd = scanner3.nextLong();
         System.out.println("Sinh nhat: ");
         Scanner scanner4 = new Scanner(System.in);
         String birthday = scanner4.nextLine();
-        Nguoi nguoi = new Nguoi(name,cmnd,birthday);
+        return new Nguoi(nameNguoi,cmnd,birthday);
+    }
+
+    private static void createRoom(int chose){
+        switch (chose){
+        case 1 -> createRoomHasNguoi();
+        case 2 -> createRoomNull();
+        case 3 -> Start();
+            default -> System.out.println("nhap lai");
+        }
+    }
+    private static void createRoomNull(){
+        RoomOfHotel room = makeRoomNull();
+        listRoom.addRoom(room);
+        WriteAndReadData.writeToDataHotel(listRoom);
+    }
+
+    private static RoomOfHotel makeRoomNull() {
         System.out.println("Type of room: ");
         Scanner scanner = new Scanner(System.in);
         String typeOfRoom = scanner.nextLine();
         System.out.println("Cost: ");
         Scanner scanner1 = new Scanner(System.in);
         double cost = scanner1.nextDouble();
+        return new RoomOfHotel(typeOfRoom,cost);
+    }
+
+    private static void createRoomHasNguoi(){
+        Nguoi nguoi = makeNguoi();
+        RoomOfHotel room = makeRoomNull();
+        LocalDate dayJoin = enterDayJoin();
+        room.setNguoi(nguoi);
+        room.setDayJoin(dayJoin);
+        listRoom.addRoom(room);
+        WriteAndReadData.writeToDataHotel(listRoom);
+    }
+    private static LocalDate enterDayJoin(){
         System.out.println("Nhap ngay join:");
         Scanner scanner5 = new Scanner(System.in);
         int day = scanner5.nextInt();
@@ -115,7 +159,7 @@ public class Client {
         System.out.println("Nhap nam join:");
         Scanner scanner7 = new Scanner(System.in);
         int year = scanner7.nextInt();
-        RoomOfHotel room = new RoomOfHotel(typeOfRoom,cost,nguoi, LocalDate.of(year,month,day));
+        return LocalDate.of(year,month,day);
     }
 }
 
