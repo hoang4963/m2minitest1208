@@ -6,9 +6,9 @@ import java.time.LocalDate;
 public class Nguoi implements Serializable {
     private String name;
     private long cmnd;
-    private LocalDate birthDay;
+    private String birthDay;
 
-    public Nguoi(String name, long cmnd, LocalDate birthDay) {
+    public Nguoi(String name, long cmnd, String birthDay) {
         this.name = name;
         this.cmnd = cmnd;
         this.birthDay = birthDay;
@@ -30,11 +30,11 @@ public class Nguoi implements Serializable {
         this.cmnd = cmnd;
     }
 
-    public LocalDate getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
 

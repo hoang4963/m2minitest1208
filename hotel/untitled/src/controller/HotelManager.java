@@ -11,9 +11,9 @@ public class HotelManager implements Serializable {
     public HotelManager() {
         listRoom = new ArrayList<>();
         WriteAndReadData.writeToDataHotel((HotelManager) listRoom);
+        listRoom = (List<RoomOfHotel>) WriteAndReadData.readDataHotel();
     }
     public double calculateMoney(int index){
-        listRoom = (List<RoomOfHotel>) WriteAndReadData.readDataHotel();
         LocalDate now = LocalDate.now();
         LocalDate dayJoin = listRoom.get(index).getDayJoin();
         if (dayJoin != null&& (index > 0 || index < listRoom.size())) {
@@ -21,18 +21,15 @@ public class HotelManager implements Serializable {
         }
         else return 0;
     }
-    public int roomWasRented(){
-        listRoom = (List<RoomOfHotel>) WriteAndReadData.readDataHotel();
+    public int size(){
         return listRoom.size();
     }
     public void addNguoi(RoomOfHotel room, Nguoi nguoi){
-        listRoom = (List<RoomOfHotel>) WriteAndReadData.readDataHotel();
         room.setNguoi(nguoi);
         listRoom.add(room);
         WriteAndReadData.writeToDataHotel((HotelManager) listRoom);
     }
     public void nguoiCheckOut(long cmnd){
-        listRoom = (List<RoomOfHotel>) WriteAndReadData.readDataHotel();
         int indexRoomCheckOut = 0;
         for (int i = 0; i < listRoom.size(); i++) {
             if (listRoom.get(i).getNguoi().getCmnd() == cmnd){
@@ -43,15 +40,19 @@ public class HotelManager implements Serializable {
         WriteAndReadData.writeToDataHotel((HotelManager) listRoom);
     }
     public void showRoomCheckIn(){
-        listRoom = (List<RoomOfHotel>) WriteAndReadData.readDataHotel();
         for (RoomOfHotel room : listRoom) {
             System.out.println(room);
         }
     }
     public void showNguoiCheckIn(){
-        listRoom = (List<RoomOfHotel>) WriteAndReadData.readDataHotel();
         for (RoomOfHotel room : listRoom) {
             System.out.println(room.getNguoi());
         }
+    }
+    public RoomOfHotel getRoomOfHotel(int index){
+        return listRoom.get(index);
+    }
+    public void addRoom(RoomOfHotel room){
+        listRoom.add(room);
     }
 }
