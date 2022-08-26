@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class RoomOfHotel {
+public class RoomOfHotel implements Serializable {
     private String typeOfRoom;
     private double cost;
     private Nguoi nguoi;

@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Nguoi {
+public class Nguoi implements Serializable {
     private String name;
     private long cmnd;
     private LocalDate birthDay;
